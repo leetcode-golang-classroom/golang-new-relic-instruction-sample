@@ -39,6 +39,8 @@ func main() {
 	// Run a simple function
 	print()
 
+	// Run record events
+	recordEvents()
 	// Wait for shut down to ensure data gets flushed
 	nrApp.Shutdown(5 * time.Second)
 }
@@ -50,4 +52,16 @@ func print() {
 	txn := nrApp.StartTransaction("go-hello-app")
 	defer txn.End()
 	fmt.Println("Hello world! Welcome to your first instrumented Golang App!")
+}
+
+func recordEvents() {
+	tasks := []string{"white", "black", "red", "blue", "green", "yello"}
+	for _, task := range tasks {
+		txn := nrApp.StartTransaction("task")
+		time.Sleep(10 * time.Millisecond)
+		txn.End()
+		nrApp.RecordCustomEvent("task", map[string]any{
+			"color": task,
+		})
+	}
 }
