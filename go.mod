@@ -25,7 +25,7 @@ require (
 )
 
 require (
-	github.com/newrelic/go-agent/v3 v3.35.1 // indirect
+	github.com/newrelic/go-agent/v3 v3.35.1
 	github.com/spf13/viper v1.19.0
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
